@@ -1,0 +1,62 @@
+// Week 8 Lab - Interest Rate Calculator Part 1
+// CIS406 - August 25th, 2024, by: Alex Crider
+
+package interestRateCalculatorPart1;
+
+import java.util.Scanner;
+import java.util.Locale;
+import java.text.NumberFormat;
+
+public class InterestRateCalculatorPart1 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Welcome to the Interest Rate Calculator");
+	
+		// Assume User Has More Inputs
+		char keepGoing = 'y';
+		
+		// Get a Scanner Object for User Inputs
+		Scanner input = new Scanner(System.in);
+		
+		// Keep Getting New Inputs Until the User Says No More
+		while (keepGoing != 'n' && keepGoing != 'N')
+		{
+			System.out.print("\nEnter loan amount: ");
+			int loanAmount = input.nextInt();
+			System.out.print("Enter iterest rate: ");
+			double interestRate = input.nextDouble();
+			
+			// Calculate Interest Amount
+			Locale usa = new Locale("en", "US");
+			double interestAmount = interestRate/100.0 * loanAmount;
+			NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+			
+			// Output Results
+			System.out.println();
+			System.out.println("\nLoan Amount:\t\t" + dollarFormat.format(loanAmount));
+			if ((double)((int) interestRate) == interestRate)
+			{
+				System.out.println("Interest Rate:\t\t" + (int) interestRate + "%");
+			}
+			else
+			{
+			System.out.println("Interest Rate:\t\t" + interestRate + "%");
+			}
+
+			System.out.println("Interest:\t\t" + dollarFormat.format(interestAmount));
+			
+			// Prompt User for More Inputs
+			System.out.print("\nContinue? (y/n): ");
+			keepGoing = input.next().charAt(0);
+			
+		}
+		
+		// All done
+		input.close();
+		System.out.println("\nBye!");
+		
+		
+	}
+
+}
